@@ -4,7 +4,8 @@ public class Livre extends BibDocument {
     private String auteur;
     private String editeur;
 
-    public Livre(String auteur, String editeur) {
+    public Livre(String isbn, String titre, EtatDocument etat, String auteur, String editeur) {
+        super(isbn, titre, etat);
         this.auteur = auteur;
         this.editeur = editeur;
     }

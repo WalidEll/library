@@ -5,6 +5,12 @@ public abstract class BibDocument {
     private String titre;
     private EtatDocument etat;
 
+    BibDocument(String isbn, String titre, EtatDocument etat) {
+        this.isbn = isbn;
+        this.titre = titre;
+        this.etat = etat;
+    }
+
     public String getIsbn() {
         return isbn;
     }
