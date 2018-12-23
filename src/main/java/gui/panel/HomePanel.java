@@ -1,8 +1,9 @@
 package gui.panel;
 
+import controller.SearchController;
 import gui.MainFrame;
-import gui.listner.MainFramePanelSwitchListener;
 import gui.event.SearchEvent;
+import gui.listner.MainFramePanelSwitchListener;
 import gui.listner.SearchListener;
 
 import javax.swing.*;
@@ -39,6 +40,7 @@ public class HomePanel extends JPanel {
                 String search = e.getSearch();
                 String type = e.getDocument_type();
                 System.out.println(search + "Home Panel" + type);
+                SearchController.getDocuments(search,type);
                 mainFramePanelSwitchListener.onCenterChangeListener(MainFrame.DOCUMENT_PANEL);
             }
         });

@@ -84,7 +84,6 @@ public class AdvencedSearchPanel extends JPanel {
                 String search = tf_search.getText();
                 String document_type = documentGroup.getSelection().getActionCommand();
                 SearchEvent searchEvent = new SearchEvent(this, search, document_type);
-                SearchController.getDocuments();
                 if (searchListener != null)
                     searchListener.searchEventOccurred(searchEvent);
             }

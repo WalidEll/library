@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Catalogue;
 import controller.SearchController;
 import gui.listner.MainFramePanelSwitchListener;
 import gui.panel.HomePanel;
@@ -35,7 +36,7 @@ public class MainFrame extends JFrame implements MainFramePanelSwitchListener {
     }
     public void onCenterChangeListener(String panel) {
         if (panel.equals(DOCUMENT_PANEL))
-            documentPanel.setData(SearchController.bibDocuments);
+            documentPanel.setData(Catalogue.getInstance().getDocuments());
         CardLayout cl = (CardLayout)(cards.getLayout());
         cl.show(cards, panel);
     }

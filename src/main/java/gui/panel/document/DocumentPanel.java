@@ -1,5 +1,7 @@
 package gui.panel.document;
 
+import controller.Catalogue;
+import controller.SearchController;
 import gui.event.SearchEvent;
 import gui.listner.SearchListener;
 import gui.panel.AdvencedSearchPanel;
@@ -37,6 +39,8 @@ public class DocumentPanel extends JPanel {
                 String search = e.getSearch();
                 String type = e.getDocument_type();
                 System.out.println(search + "Document panel"  + type);
+                SearchController.getDocuments(search,type);
+                setData(Catalogue.getInstance().getDocuments());
 
             }
         });
