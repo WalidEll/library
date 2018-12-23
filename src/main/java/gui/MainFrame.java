@@ -2,7 +2,12 @@ package gui;
 
 import gui.event.SearchEvent;
 import gui.listner.SearchListener;
+import gui.event.LoginEvent;
+import gui.listner.LoginListener;
 import gui.panel.SearchPanel;
+import gui.panel.LoginPanel;
+import gui.panel.ConnectedPanel;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +15,8 @@ import java.awt.*;
 class MainFrame extends JFrame {
 
     private SearchPanel searchPanel = new SearchPanel();
+    private LoginPanel loginPanel = new LoginPanel();
+    private ConnectedPanel ConnectedPanel = new ConnectedPanel();
 
     MainFrame() {
         super("Bibliotheque");
@@ -56,7 +63,22 @@ class MainFrame extends JFrame {
             // end
 
         });
+        add(loginPanel, BorderLayout.SOUTH);
+        loginPanel.setLoginListener(new LoginListener() {
+            public void loginEventOccurred(LoginEvent e) {
+                //TODO implement login from database
+                String username = e.getUsername();
+                String password = e.getPassword();
+                remove(loginPanel);
+                JLabel userlabel = new JLabel();
+                userlabel.setText("-" +username+ "-");
+                add(ConnectedPanel, BorderLayout.SOUTH);
+                ConnectedPanel.add(userlabel);
+                invalidate();
+                validate();
+            }
 
-        // TODO create authentication panel
+        });
+
     }
 }
