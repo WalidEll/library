@@ -19,7 +19,7 @@ public class MainFrame extends JFrame implements MainFramePanelSwitchListener {
     public static final String HOME_PANEL = "home_panel";
     public static final String DOCUMENT_PANEL = "document_panel";
     public static final String LOGIN_PANEL = "login_panel";
-    public static final String CONNECTED_PANEL = "login_panel";
+    public static final String CONNECTED_PANEL = "connected_panel";
     private ConnectedPanel connectedPanel;
     private HomePanel homePanel;
     private DocumentPanel documentPanel;
@@ -48,12 +48,17 @@ public class MainFrame extends JFrame implements MainFramePanelSwitchListener {
         south_cards.add(loginPanel, LOGIN_PANEL);
         connectedPanel = new ConnectedPanel();
         south_cards.add(connectedPanel, CONNECTED_PANEL);
-        loginPanel.setLoginListener(new LoginListener() {
-            public void loginEventOccurred(LoginEvent e) {
-                Session.getInstance().setUtilisateur(e.getUsername());
-                CardLayout cl = (CardLayout) (south_cards.getLayout());
-                cl.show(south_cards, CONNECTED_PANEL);
-            }
+        loginPanel.setLoginListener(e -> {
+            Session.getInstance().setUtilisateur(e.getUsername());
+            connectedPanel.updateContent();
+
+            CardLayout cl = (CardLayout) (south_cards.getLayout());
+            cl.show(south_cards, CONNECTED_PANEL);
+        });
+        connectedPanel.setLogoutListener(() -> {
+            Session.getInstance().destroy();
+            CardLayout cl = (CardLayout) (south_cards.getLayout());
+            cl.show(south_cards, LOGIN_PANEL);
         });
         add(south_cards, BorderLayout.SOUTH);
 

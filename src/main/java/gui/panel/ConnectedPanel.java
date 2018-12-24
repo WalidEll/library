@@ -1,8 +1,8 @@
 package gui.panel;
 
-import gui.event.LogoutEvent;
-import gui.event.LoginEvent;
+import controller.Session;
 import gui.listner.LogoutListener;
+import model.utilisateur.Employe;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,40 +13,19 @@ public class ConnectedPanel extends JPanel {
     private JButton btn_logout;
     private JButton emprunt;
     private JButton clients;
+    private JLabel lb_user;
     private LogoutListener logoutListener;
 
 
     public ConnectedPanel() {
-        GridBagConstraints gc = new GridBagConstraints();
 
         setLayout(new GridBagLayout());
 
+        lb_user = new JLabel();
         emprunt = new JButton("Gest. emprunt");
         clients = new JButton("Gest. Client");
         btn_logout = new JButton("Logout");
-        btn_logout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-
-        });
-        gc = new GridBagConstraints();
-        gc.gridx = 0;
-        gc.gridy = 0;
-        gc.insets = new Insets(0, 0, 0, 0);
-        gc.fill = GridBagConstraints.EAST;
-        add(emprunt, gc);
-        gc.gridx = 2;
-        gc.gridy = 0;
-        gc.insets = new Insets(0, 0, 0, 0);
-        gc.fill = GridBagConstraints.EAST;
-        add(clients, gc);
-        gc.gridx = 4;
-        gc.gridy = 0;
-        gc.insets = new Insets(0, 0, 0, 0);
-        gc.fill = GridBagConstraints.WEST;
-        add(btn_logout, gc);
-        System.out.println("connectedPanel");
+        btn_logout.addActionListener(e -> logoutListener.logoutEventOccurred());
 
 
     }
@@ -55,4 +34,29 @@ public class ConnectedPanel extends JPanel {
         this.logoutListener = loginListener;
     }
 
+    public void updateContent() {
+        if (Session.getInstance().getUtilisateur() instanceof Employe) {
+            lb_user.setText("["+((Employe)Session.getInstance().getUtilisateur()).getRoleEmploye()+"] "+((Employe)Session.getInstance().getUtilisateur()).getUsername());
+            GridBagConstraints gc = new GridBagConstraints();
+            gc.gridx = 0;
+            gc.gridy = 0;
+            gc.insets = new Insets(0, 10, 0, 10);
+            this.add(lb_user, gc);
+            gc = new GridBagConstraints();
+            gc.gridx = 1;
+            gc.gridy = 0;
+            gc.insets = new Insets(0, 10, 0, 10);
+            this.add(emprunt, gc);
+            gc = new GridBagConstraints();
+            gc.gridx = 2;
+            gc.gridy = 0;
+            gc.insets = new Insets(0, 10, 0, 10);
+            this.add(clients, gc);
+            gc = new GridBagConstraints();
+            gc.gridx = 3;
+            gc.gridy = 0;
+            gc.insets = new Insets(0, 10, 0, 10);
+            this.add(btn_logout, gc);
+        }
+    }
 }
