@@ -1,10 +1,13 @@
 package gui.panel;
 
+import controller.LoginController;
 import gui.event.LoginEvent;
 import gui.listner.LoginListener;
-import gui.listner.LoginListener;
+import model.utilisateur.Utilisateur;
 
+import javax.security.auth.login.FailedLoginException;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +20,7 @@ public class LoginPanel extends JPanel {
     public LoginPanel() {
         GridBagConstraints gc = new GridBagConstraints();
         setLayout(new GridBagLayout());
-
+        setBorder(new EmptyBorder(10, 10, 10, 10));
 
         btn_login = new JButton("Login");
         btn_login.addActionListener(new ActionListener() {
@@ -29,17 +32,28 @@ public class LoginPanel extends JPanel {
                         "Password:", password
                 };
 
-                int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+                int option = JOptionPane.
+                        showConfirmDialog(null,
+                                message,
+                                "Login",
+                                JOptionPane.OK_CANCEL_OPTION);
+
                 if (option == JOptionPane.OK_OPTION) {
-                    if (username.getText().equals("walid") && password.getText().equals("1234")) {
+                    Utilisateur utilisateur = null;
+                    try {
+
+                        utilisateur = LoginController.login(username.getText(), password.getText());
                         System.out.println("Login successful");
-                        String user = username.getText();
-                        String pass = password.getText();
-                        LoginEvent loginEvent = new LoginEvent(this, user, pass);
+                        LoginEvent loginEvent = new LoginEvent(utilisateur);
+
                         if (loginListener != null)
                             loginListener.loginEventOccurred(loginEvent);
-                    } else {
-                        System.out.println("login failed");
+
+                    } catch (FailedLoginException e1) {
+                        JOptionPane.showMessageDialog(null,
+                                e1.getMessage(),
+                                "Login error",
+                                JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     System.out.println("Login canceled");

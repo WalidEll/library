@@ -2,7 +2,7 @@ package model.utilisateur;
 
 import java.util.Date;
 
-public class Adherent extends Utilisateur {
+public class Adherent {
     private Integer adherent_id;
     private String nom;
     private String prenom;
@@ -11,8 +11,7 @@ public class Adherent extends Utilisateur {
     private Date dateInscription;
     private Date datePayment;
 
-    public Adherent(String username, String password, Integer adherent_id, String nom, String prenom, String adress, String telephone, Date dateInscription, Date datePayment) {
-        super(username, password);
+    public Adherent(Integer adherent_id, String nom, String prenom, String adress, String telephone, Date dateInscription, Date datePayment) {
         this.adherent_id = adherent_id;
         this.nom = nom;
         this.prenom = prenom;

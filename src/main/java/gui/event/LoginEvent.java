@@ -1,22 +1,18 @@
 package gui.event;
 
+import model.utilisateur.Utilisateur;
+
 import java.util.EventObject;
 
-public class LoginEvent extends EventObject {
+public class LoginEvent {
 
-    private String username;
-    private String password;
+    private Utilisateur username;
 
-    public LoginEvent(Object source, String username, String password) {
-        super(source);
+    public LoginEvent(Utilisateur username) {
         this.username = username;
-        this.password = password;
     }
-    public String getUsername() {
+    public Utilisateur getUsername() {
         return username;
-    }
-    public String getPassword() {
-        return password;
     }
 
 

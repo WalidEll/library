@@ -4,8 +4,8 @@ public class Employe extends Utilisateur{
     private Integer id;
     private RoleEmploye roleEmploye;
 
-    public Employe(String username, String password, Integer id, RoleEmploye roleEmploye) {
-        super(username, password);
+    public Employe(String username, Integer id, RoleEmploye roleEmploye) {
+        super(username);
         this.id = id;
         this.roleEmploye = roleEmploye;
     }

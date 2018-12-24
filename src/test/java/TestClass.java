@@ -1,8 +1,9 @@
+import database.DBSingleton;
 import org.junit.Test;
 
 public class TestClass {
     @Test
     public void testFunction(){
-        System.out.println("Test");
+        DBSingleton.getInstance().getConnection();
     }
 }

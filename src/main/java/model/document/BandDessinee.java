@@ -7,8 +7,8 @@ public class BandDessinee extends BibDocument {
     private String editeur;
 
 
-    public BandDessinee(String isbn, String titre, EtatDocument etat, String collection, String dessin, String senario, String editeur) {
-        super(isbn, titre, etat);
+    public BandDessinee(Integer id,String isbn, String titre, EtatDocument etat, String collection, String dessin, String senario, String editeur) {
+        super(id,isbn, titre, etat);
         this.collection = collection;
         this.dessin = dessin;
         this.senario = senario;

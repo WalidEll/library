@@ -9,10 +9,10 @@ import java.util.List;
 public class DocumentTableModel extends AbstractTableModel {
     private List<BibDocument> documents;
 
-    private String[] columnsName={"ISBN","TITRE"};
+    private String[] columnsName={"ISBN","TITRE","ETAT"};
 
     public DocumentTableModel() {
-        documents=new ArrayList<BibDocument>();
+        documents=new ArrayList<>();
     }
 
     public int getRowCount() {
@@ -25,7 +25,7 @@ public class DocumentTableModel extends AbstractTableModel {
     }
 
     public int getColumnCount() {
-        return 2;
+        return columnsName.length;
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -35,6 +35,8 @@ public class DocumentTableModel extends AbstractTableModel {
                 return document.getIsbn();
             case 1:
                 return document.getTitre();
+            case 2:
+                return document.getEtat();
         }
         return null;
     }

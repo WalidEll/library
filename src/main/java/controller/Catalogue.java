@@ -1,11 +1,20 @@
 package controller;
 
-import model.document.BibDocument;
+import model.document.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Catalogue {
+    public static Map<String,String> tables=new HashMap<>();
+    static {
+        Map<String, String> aMap = new HashMap<>();
+        aMap.put(Livre.class.toString(), "livre");
+        aMap.put(BandDessinee.class.toString(), "bande_dessine");
+        aMap.put(GuideVoyage.class.toString(), "guide_voyage");
+        aMap.put(Revue.class.toString(), "revue");
+        aMap.put(Roman.class.toString(), "roman");
+        tables = Collections.unmodifiableMap(aMap);
+    }
     private List<BibDocument> catalogue;
     private static Catalogue instance=null;
     private Catalogue() {
@@ -30,4 +39,5 @@ public class Catalogue {
     public BibDocument getDocument(int index){
         return catalogue.get(index);
     }
+
 }

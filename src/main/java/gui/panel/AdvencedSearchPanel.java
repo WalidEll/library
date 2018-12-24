@@ -3,6 +3,7 @@ package gui.panel;
 import controller.SearchController;
 import gui.event.SearchEvent;
 import gui.listner.SearchListener;
+import model.document.*;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -51,27 +52,30 @@ public class AdvencedSearchPanel extends JPanel {
         gc.gridx = 0;
         gc.gridy = 1;
         add(rd_roman, gc);
-        rd_roman.setActionCommand("roman");
+        rd_roman.setActionCommand(Roman.class.toString());
 
         gc = new GridBagConstraints();
         gc.gridx = 1;
         gc.gridy = 1;
         add(rd_bd, gc);
-
+        rd_bd.setActionCommand(BandDessinee.class.toString());
         gc = new GridBagConstraints();
         gc.gridx = 2;
         gc.gridy = 1;
         add(rd_livre, gc);
+        rd_livre.setActionCommand(Livre.class.toString());
 
         gc = new GridBagConstraints();
         gc.gridx = 3;
         gc.gridy = 1;
         add(rd_gvoyage, gc);
+        rd_gvoyage.setActionCommand(GuideVoyage.class.toString());
 
         gc = new GridBagConstraints();
         gc.gridx = 4;
         gc.gridy = 1;
         add(rd_revue, gc);
+        rd_revue.setActionCommand(Revue.class.toString());
 
 
         gc = new GridBagConstraints();
@@ -79,6 +83,7 @@ public class AdvencedSearchPanel extends JPanel {
         gc.gridx = 5;
         gc.gridy = 1;
         add(btn_search, gc);
+        rd_roman.setSelected(true);
         btn_search.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String search = tf_search.getText();

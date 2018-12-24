@@ -25,6 +25,8 @@ public class DocumentPanel extends JPanel {
         docmentsTable = new JTable(tableModel);
         docmentsTable.getColumnModel().getColumn(0).setMinWidth(100);
         docmentsTable.getColumnModel().getColumn(0).setMaxWidth(100);
+        docmentsTable.getColumnModel().getColumn(2).setMinWidth(75);
+        docmentsTable.getColumnModel().getColumn(2).setMaxWidth(75);
         setLayout(new BorderLayout());
         JScrollPane jScrollPane=new JScrollPane(docmentsTable);
         jScrollPane.setBorder(new CompoundBorder(new EmptyBorder(10,10,10,10),BorderFactory.createTitledBorder("Catalogue")));

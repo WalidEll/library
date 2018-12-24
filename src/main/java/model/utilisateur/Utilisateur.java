@@ -2,11 +2,9 @@ package model.utilisateur;
 
 public class Utilisateur {
     private String username;
-    private String password;
 
-    Utilisateur(String username, String password) {
+    public Utilisateur(String username) {
         this.username = username;
-        this.password = password;
     }
 
     public String getUsername() {
@@ -17,11 +15,5 @@ public class Utilisateur {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
